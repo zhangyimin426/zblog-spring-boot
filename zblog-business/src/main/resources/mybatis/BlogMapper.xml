@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.zym.business.blog.dao.BlogDao">
+    <resultMap id="BaseResultMap" type="com.zym.common.base.model.Blog">
+        <id column="blog_id" property="blogId" jdbcType="INTEGER"/>
+        <result column="blog_title" property="blogTitle" jdbcType="VARCHAR"/>
+        <result column="blog_type" property="blogType" jdbcType="INTEGER"/>
+        <result column="blog_label" property="blogLabel" jdbcType="VARCHAR"/>
+        <result column="author" property="author" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <resultMap id="ResultMapWithBLOBs" type="com.zym.common.base.model.Blog" extends="BaseResultMap">
+        <result column="blog_content" property="blogContent" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        blog_id, blog_title, blog_type, blog_label, author, create_time, update_time
+    </sql>
+    <sql id="Blob_Column_List">
+        blog_content
+    </sql>
+
+    <select id="getById" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from t_blog
+        where blog_id = #{blogId,jdbcType=INTEGER}
+    </select>
+
+    <select id="getAll" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from t_blog
+        order by blog_id asc, update_time desc
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from t_blog
+        where blog_id = #{blogId,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.zym.common.base.model.Blog" useGeneratedKeys="true" keyProperty="blogId">
+        insert into t_blog
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            blog_title,
+            blog_type,
+            blog_label,
+            author,
+            create_time,
+            update_time,
+            blog_content,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{blogTitle,jdbcType=VARCHAR},
+            #{blogType,jdbcType=INTEGER},
+            #{blogLabel,jdbcType=VARCHAR},
+            #{author,jdbcType=VARCHAR},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{updateTime,jdbcType=TIMESTAMP},
+            #{blogContent,jdbcType=LONGVARCHAR},
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.zym.common.base.model.Blog">
+        update t_blog
+        <set>
+            <if test="blogTitle != null">
+                blog_title = #{blogTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="blogType != null">
+                blog_type = #{blogType,jdbcType=INTEGER},
+            </if>
+            <if test="blogLabel != null">
+                blog_label = #{blogLabel,jdbcType=VARCHAR},
+            </if>
+            <if test="author != null">
+                author = #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="blogContent != null">
+                blog_content = #{blogContent,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where blog_id = #{blogId,jdbcType=INTEGER}
+    </update>
+</mapper>
