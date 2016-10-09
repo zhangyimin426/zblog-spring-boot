@@ -3,13 +3,13 @@ package com.zym.common.base.model.base;
 import java.io.Serializable;
 
 /**
+ * 接口公共请求参数
+ *
  * @author Gavin
  * @date 2016-09-30
  */
 public class CommonReqParam implements Serializable {
     private String appKey;
-
-    private int sex;
 
     private String accessToken;//有些接口不一定要传
 
@@ -48,4 +48,5 @@ public class CommonReqParam implements Serializable {
     public void setSource(Integer source) {
         this.source = source;
     }
+
 }

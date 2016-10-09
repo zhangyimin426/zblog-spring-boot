@@ -14,7 +14,7 @@ public interface VeriCodeService {
      * @param source           来源
      * @return true检查通过
      */
-    boolean checkVeriCode(String clientVeriCode, String clientRandomCode, String source);
+    boolean checkVeriCode(String clientVeriCode, String clientRandomCode, Integer source);
 
     /**
      * 检查验证码是否过期
@@ -24,7 +24,7 @@ public interface VeriCodeService {
      * @param source           来源
      * @return true检查通过
      */
-    boolean checkVeriCodeTime(String clientVeriCode, String clientRandomCode, String source);
+    boolean checkVeriCodeTime(String clientVeriCode, String clientRandomCode, Integer source);
 
     /**
      * 清除验证码
@@ -33,5 +33,5 @@ public interface VeriCodeService {
      * @param clientRandomCode 客户端验证码
      * @param source           来源
      */
-    void clearVeriCode(String clientVeriCode, String clientRandomCode, String source);
+    void clearVeriCode(String clientVeriCode, String clientRandomCode, Integer source);
 }

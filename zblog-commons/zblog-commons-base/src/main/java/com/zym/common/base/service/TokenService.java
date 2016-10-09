@@ -26,7 +26,7 @@ public interface TokenService {
      * @param appKey
      * @return 授权信息
      */
-    Auth getAuthByAccessToken(String accessToken, Integer appKey);
+    Auth getAuthByAccessToken(String accessToken, String appKey);
 
     /**
      * 获取过期授权信息
@@ -35,7 +35,7 @@ public interface TokenService {
      * @param appKey
      * @return
      */
-    Auth getAuthByExpiresToken(String ExpiresToken, Integer appKey);
+    Auth getAuthByExpiresToken(String ExpiresToken, String appKey);
 
     /**
      * 获取刷新授权信息
@@ -44,7 +44,7 @@ public interface TokenService {
      * @param appKey
      * @return
      */
-    Auth getAuthByRefreshTokenn(String refreshToken, Integer appKey);
+    Auth getAuthByRefreshTokenn(String refreshToken, String appKey);
 
     /**
      * 获取帐号标识
@@ -53,7 +53,7 @@ public interface TokenService {
      * @param appKey
      * @return 帐号标识
      */
-    Integer getUserIdByAccessToken(String accessToken, Integer appKey);
+    Integer getUserIdByAccessToken(String accessToken, String appKey);
 
     /**
      * 获取帐号标识
@@ -62,7 +62,7 @@ public interface TokenService {
      * @param appKey
      * @return 帐号标识
      */
-    Integer getUserIdByRefreshToken(String refreshToken, Integer appKey);
+    Integer getUserIdByRefreshToken(String refreshToken, String appKey);
 
     /**
      * 获取帐号标识
@@ -71,6 +71,6 @@ public interface TokenService {
      * @param appKey
      * @return
      */
-    Integer getUserIdByExpiresToken(String expiresToken, Integer appKey);
+    Integer getUserIdByExpiresToken(String expiresToken, String appKey);
 
 }

@@ -23,12 +23,16 @@ public class GlobalResultStatus {
 	
 	public static final ResultStatus ERROR = new ResultStatus(100010200, "失败");
 	public static final ResultStatus PARAM_MISSING = new ResultStatus(100010201, "缺少参数");
-	public static final ResultStatus PARAM_ERROR = new ResultStatus(100010202, "参数错误");
-	public static final ResultStatus MUST_USE_HTTPS = new ResultStatus(100010203, "必须使用https");
-	public static final ResultStatus PARAM_DELETE_LIMIT = new ResultStatus(100010204, "参数删除不允许");
-	public static final ResultStatus PARAM_SAME_POSITION = new ResultStatus(100010205, "推荐位置相同");
-	public static final ResultStatus PARAM_LENGTH_ERROR = new ResultStatus(100010206, "参数长度错误");
-	public static final ResultStatus PHONE_OR_EMAIL_ERROR = new ResultStatus(100010207, "手机或邮箱不正确");
+	public static final ResultStatus PARAM_APPKEY_MISSING = new ResultStatus(100010202, "缺少appKey参数");
+	public static final ResultStatus PARAM_ACCESSTOKEN_MISSING = new ResultStatus(100010203, "缺少accessToken参数");
+	public static final ResultStatus PARAM_TIMESTAMP_MISSING = new ResultStatus(100010204, "缺少timestamp参数");
+	public static final ResultStatus PARAM_SOURCE_MISSING = new ResultStatus(100010205, "缺少source参数");
+	public static final ResultStatus PARAM_ERROR = new ResultStatus(100010206, "参数错误");
+	public static final ResultStatus MUST_USE_HTTPS = new ResultStatus(100010207, "必须使用https");
+	public static final ResultStatus PARAM_DELETE_LIMIT = new ResultStatus(100010208, "参数删除不允许");
+	public static final ResultStatus PARAM_SAME_POSITION = new ResultStatus(100010209, "推荐位置相同");
+	public static final ResultStatus PARAM_LENGTH_ERROR = new ResultStatus(100010210, "参数长度错误");
+	public static final ResultStatus PHONE_OR_EMAIL_ERROR = new ResultStatus(100010211, "手机或邮箱不正确");
 
 	public static final ResultStatus ACCOUNT_REGISTERED = new ResultStatus(100021000, "帐号已注册");
 	public static final ResultStatus ACCOUNT_NOT_REGISTERED = new ResultStatus(100021001, "帐号未注册");

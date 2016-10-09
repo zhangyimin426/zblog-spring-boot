@@ -1,15 +1,12 @@
-package com.zym.common.base.model;
+package com.zym.common.base.form;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
- * 用户账号
- *
  * @author Gavin
- * @date 2016-09-29
+ * @date 2016-10-09
  */
-public class Account implements Serializable {
+public class AccountForm implements Serializable {
     private Integer accountId;
 
     private Integer status;
@@ -18,13 +15,7 @@ public class Account implements Serializable {
 
     private String email;
 
-    private String password;
-
     private Integer regSource;
-
-    private Date createTime;
-
-    private Date updateTime;
 
     public Integer getAccountId() {
         return accountId;
@@ -58,35 +49,11 @@ public class Account implements Serializable {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public Integer getRegSource() {
         return regSource;
     }
 
     public void setRegSource(Integer regSource) {
         this.regSource = regSource;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 }

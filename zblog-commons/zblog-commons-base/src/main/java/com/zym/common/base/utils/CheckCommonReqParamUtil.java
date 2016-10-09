@@ -1,6 +1,7 @@
 package com.zym.common.base.utils;
 
 import com.zym.common.base.model.base.CommonReqParam;
+import com.zym.common.base.statuscode.GlobalResultStatus;
 import com.zym.common.base.statuscode.ResultStatus;
 
 import java.lang.reflect.Field;
@@ -26,7 +27,9 @@ public class CheckCommonReqParamUtil<T> {
     }
 
     public ResultStatus checkBean(T bean) {
-
+        if (bean == null) {
+            return GlobalResultStatus.ERROR;
+        }
         try {
             Class clazz = bean.getClass();
             /*
@@ -36,25 +39,43 @@ public class CheckCommonReqParamUtil<T> {
             for (int i = 0; i < fields.length; i++) {
                 Field field = fields[i];
                 field.setAccessible(true); //设置些属性是可以访问的
+                String fieldName = field.getName();//得到此属性名字
                 Object value = field.get(bean);//得到此属性的值
                 String type = field.getGenericType().toString();//得到此属性的类型
-                System.out.println("name:" + field.getName() + ", value = " + value + ", type = " + type);
+                System.out.println("name:" + fieldName + ", value = " + value + ", type = " + type);
+
                 if ("class java.lang.String".equals(type)) {
                     if (StringUtil.isEmpty(String.valueOf(value))) {
-
+                        if (fieldName.equals("appKey")) {
+                            return GlobalResultStatus.PARAM_APPKEY_MISSING;
+                        }else if (fieldName.equals("accessToken")) {
+                            return GlobalResultStatus.PARAM_ACCESSTOKEN_MISSING;
+                        }
                     }
-                } else if (type.endsWith("int") || type.endsWith("Integer")) {
-                    System.out.println(field.getType() + "\t是int");
-                    field.set(bean, 12);       //给属性设值
+                } else if (type.endsWith("int")) {
+
+                } else if (type.endsWith("Integer")) {
+                    if (value == null) {
+                        if (fieldName.equals("source")) {
+                            return GlobalResultStatus.PARAM_SOURCE_MISSING;
+                        }
+                    }
+                } else if (type.endsWith("Long")) {
+                    if (value == null) {
+                        if (fieldName.equals("timestamp")) {
+                            return GlobalResultStatus.PARAM_TIMESTAMP_MISSING;
+                        }
+                    }
+                } else if (type.endsWith("Double")) {
+
                 } else {
-                    System.out.println(field.getType() + "\t");
+
                 }
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-
-        return false;
+        return GlobalResultStatus.SUCCESS;
     }
 
 

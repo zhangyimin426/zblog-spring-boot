@@ -1,7 +1,11 @@
 package com.zym.common.base.service;
 
+import com.zym.common.base.form.AccountForm;
 import com.zym.common.base.model.Account;
+import com.zym.common.base.model.Blog;
 import com.zym.common.base.service.base.BaseService;
+
+import java.util.List;
 
 /**
  * @author Gavin
@@ -16,5 +20,14 @@ public interface AccountService extends BaseService<Account> {
      * @return 帐号信息
      */
     Account getAccount(String account);
+
+    /**
+     *
+     * @param form
+     * @param page
+     * @param perPage
+     * @return
+     */
+    List<Account> getAll(AccountForm form, Integer page, Integer perPage);
 
 }

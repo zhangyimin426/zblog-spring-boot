@@ -13,5 +13,5 @@ public interface AuthService {
      * @param accountId 用户账号标识
      * @return 授权信息
      */
-    Auth createAuth(Integer accountId, String userAgent, Integer appKey);
+    Auth createAuth(Integer accountId, String userAgent, String appKey);
 }
