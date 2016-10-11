@@ -1,6 +1,7 @@
 package com.zym.api.blog.controller;
 
 import com.zym.common.base.auth.annotation.CheckAuth;
+import com.zym.common.base.model.VeriCodeInfo;
 import com.zym.common.base.model.base.CommonReqParam;
 import com.zym.common.base.service.VeriCodeService;
 import com.zym.common.base.service.cache.CacheService;
@@ -23,7 +24,7 @@ import java.util.Map;
  * @date 2016-09-29
  */
 @RestController
-@RequestMapping("/account")
+@RequestMapping("/accountRe")
 public class AccountRegisterController {
 
     @Autowired
@@ -53,15 +54,8 @@ public class AccountRegisterController {
 //            return JsonResult.fail(GlobalResultStatus.PARAM_SOURCE_MISSING);
 //        }
 
-        //产生6位验证码
-        String veriCode = RandomUtil.getNumbers(6);
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        String randomCode = RandomUtil.getUUID();
-        //一个随机码对应一个验证码
-        cacheService.setSerializer("PicRandomCode:" + randomCode + "source:" + commonReqParam.getSource(), veriCode, 1800L);
-        resultMap.put("veriCode", veriCode);
-        resultMap.put("randomCode", randomCode);
-        return JsonResult.success(resultMap);
+        VeriCodeInfo veriCodeInfo = veriCodeService.createVeriCode(commonReqParam.getSource());
+        return JsonResult.success(veriCodeInfo);
     }
 
     /**
@@ -80,7 +74,7 @@ public class AccountRegisterController {
         if (!veriCodeService.checkVeriCode(veriCode, randomCode, commonReqParam.getSource())) {
             return JsonResult.fail(GlobalResultStatus.VERI_CODE_ERROR);
         }
-        veriCodeService.clearVeriCode(veriCode, randomCode, commonReqParam.getSource());
+        veriCodeService.clearVeriCode(randomCode, commonReqParam.getSource());
         return JsonResult.success();
     }
 
@@ -102,7 +96,7 @@ public class AccountRegisterController {
         if (!veriCodeService.checkVeriCode(veriCode, randomCode, commonReqParam.getSource())) {
             return JsonResult.fail(GlobalResultStatus.VERI_CODE_ERROR);
         }
-        veriCodeService.clearVeriCode(veriCode, randomCode, commonReqParam.getSource());
+        veriCodeService.clearVeriCode(randomCode, commonReqParam.getSource());
         return JsonResult.success();
     }
 }

@@ -6,8 +6,6 @@ import com.zym.common.base.service.AccountService;
 import com.zym.common.base.statuscode.GlobalResultStatus;
 import com.zym.common.base.utils.DateUtil;
 import com.zym.common.base.utils.JsonResult;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,7 +45,7 @@ public class AccountController {
         if (perPage == null) {
             perPage = 4;
         }
-        return accountService.getAll(form, page, perPage);
+        return accountService.getByForm(form, page, perPage);
 
     }
 

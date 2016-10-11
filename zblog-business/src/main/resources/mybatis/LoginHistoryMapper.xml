@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.zym.business.blog.dao.LoginHistoryDao" >
+  <resultMap id="BaseResultMap" type="com.zym.common.base.model.LoginHistory" >
+    <id column="account_id" property="accountId" jdbcType="INTEGER" />
+    <id column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
+    <result column="remote_ip" property="remoteIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    account_id, login_time, remote_ip
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.zym.common.base.model.LoginHistory" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_login_history
+    where account_id = #{accountId,jdbcType=INTEGER}
+      and login_time = #{loginTime,jdbcType=TIMESTAMP}
+  </select>
+  <delete id="delete" parameterType="com.zym.common.base.model.LoginHistory" >
+    delete from t_login_history
+    where account_id = #{accountId,jdbcType=INTEGER}
+      and login_time = #{loginTime,jdbcType=TIMESTAMP}
+  </delete>
+
+  <insert id="insert" parameterType="com.zym.common.base.model.LoginHistory" >
+    insert into t_login_history
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      account_id,
+      login_time,
+      remote_ip,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{accountId,jdbcType=INTEGER},
+      #{loginTime,jdbcType=TIMESTAMP},
+      #{remoteIp,jdbcType=VARCHAR},
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.zym.common.base.model.LoginHistory" >
+    update t_login_history
+    <set >
+      <if test="remoteIp != null" >
+        remote_ip = #{remoteIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where account_id = #{accountId,jdbcType=INTEGER}
+      and login_time = #{loginTime,jdbcType=TIMESTAMP}
+  </update>
+
+</mapper>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
-<mapper namespace="com.zym.business.blog.dao.AcountDao" >
+<mapper namespace="com.zym.business.blog.dao.AccountDao" >
   <resultMap id="BaseResultMap" type="com.zym.common.base.model.Account" >
     <id column="account_id" property="accountId" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
@@ -13,10 +13,24 @@
   <sql id="Base_Column_List" >
     account_id, `status`, phone, email, `password`, reg_source, create_time
   </sql>
+
+  <select id="getByAccount" resultMap="BaseResultMap" parameterType="com.zym.common.base.model.Account">
+    select
+    <include refid="Base_Column_List"/>
+    from t_acount where 1=1
+    <if test="phone != null">
+      and phone = #{phone,jdbcType=VARCHAR}
+    </if>
+    <if test="email != null">
+      and email = #{email,jdbcType=VARCHAR}
+    </if>
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from t_acount
+
     where account_id = #{accountId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

@@ -13,6 +13,16 @@ public class BusinessConfig {
 
     private String cacheHessianUrl;
 
+    private String accountHessianUrl;
+
+    private String appInfoHessianUrl;
+
+    private String loginHistoryHessianUrl;
+
+    private String userHessianUrl;
+
+    private String veriCodeHessianUrl;
+
     public String getCacheHessianUrl() {
         return cacheHessianUrl;
     }
@@ -27,5 +37,45 @@ public class BusinessConfig {
 
     public void setBlogHessianUrl(String blogHessianUrl) {
         this.blogHessianUrl = blogHessianUrl;
+    }
+
+    public String getAccountHessianUrl() {
+        return accountHessianUrl;
+    }
+
+    public void setAccountHessianUrl(String accountHessianUrl) {
+        this.accountHessianUrl = accountHessianUrl;
+    }
+
+    public String getAppInfoHessianUrl() {
+        return appInfoHessianUrl;
+    }
+
+    public void setAppInfoHessianUrl(String appInfoHessianUrl) {
+        this.appInfoHessianUrl = appInfoHessianUrl;
+    }
+
+    public String getLoginHistoryHessianUrl() {
+        return loginHistoryHessianUrl;
+    }
+
+    public void setLoginHistoryHessianUrl(String loginHistoryHessianUrl) {
+        this.loginHistoryHessianUrl = loginHistoryHessianUrl;
+    }
+
+    public String getUserHessianUrl() {
+        return userHessianUrl;
+    }
+
+    public void setUserHessianUrl(String userHessianUrl) {
+        this.userHessianUrl = userHessianUrl;
+    }
+
+    public String getVeriCodeHessianUrl() {
+        return veriCodeHessianUrl;
+    }
+
+    public void setVeriCodeHessianUrl(String veriCodeHessianUrl) {
+        this.veriCodeHessianUrl = veriCodeHessianUrl;
     }
 }

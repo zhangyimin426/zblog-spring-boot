@@ -3,6 +3,7 @@ package com.zym.common.base.service;
 import com.zym.common.base.auth.Auth;
 
 /**
+ * 用户app接口token服务
  * @author Gavin
  * @date 2016-09-29
  */

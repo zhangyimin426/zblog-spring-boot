@@ -19,7 +19,7 @@ public interface AccountService extends BaseService<Account> {
      * @param account 帐号：手机号码或邮箱
      * @return 帐号信息
      */
-    Account getAccount(String account);
+    Account getByAccount(String account);
 
     /**
      *
@@ -28,6 +28,6 @@ public interface AccountService extends BaseService<Account> {
      * @param perPage
      * @return
      */
-    List<Account> getAll(AccountForm form, Integer page, Integer perPage);
+    List<Account> getByForm(AccountForm form, Integer page, Integer perPage);
 
 }

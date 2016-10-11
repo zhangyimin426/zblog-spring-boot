@@ -23,7 +23,7 @@ import java.io.IOException;
  * @date 2016-09-26
  */
 
-@WebFilter(filterName = "sessionFilter", urlPatterns = "/*")
+//@WebFilter(filterName = "sessionFilter", urlPatterns = "/*")
 public class SessionFilter implements Filter {
 
     private static final Logger log = LoggerFactory.getLogger(SessionFilter.class);
